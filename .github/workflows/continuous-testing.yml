@@ -18,7 +18,6 @@ jobs:
   unit-test:
     name: Unit Test
     runs-on: ubuntu-18.04
-    continue-on-error: true
     strategy:
       fail-fast: false
       matrix:
@@ -85,6 +84,6 @@ jobs:
           python -m pip install -r requirements-weko-modules.txt
           python -m pip install pytest==5.4.3 pytest-cov pytest-invenio mock coveralls
       - name: Run tests
-        run: python -m pytest -v modules/${{ matrix.module }}
-      - name: Coveralls
-        run: coveralls
+        run: |
+          python -m pytest -v modules/${{ matrix.module }} || coveralls; false
+          coveralls
