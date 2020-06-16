@@ -82,6 +82,8 @@ jobs:
           python -m pip install -r packages.txt
           python -m pip install -r packages-invenio.txt
           python -m pip install -r requirements-weko-modules.txt
-          python -m pip install pytest==5.4.3 pytest-cov pytest-invenio mock
+          python -m pip install pytest==5.4.3 pytest-cov pytest-invenio mock coveralls
       - name: Run tests
         run: python -m pytest -v modules/${{ matrix.module }}
+      - name: Coveralls
+        run: coveralls
