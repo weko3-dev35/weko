@@ -71,11 +71,10 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install python3-setuptools libpq-dev libedit-dev libsqlite3-dev
-      - name: Install python
-        uses: gabrielfalcao/pyenv-action@v5
+      - name: Setup python
+        uses: actions/setup-python@v2
         with:
-          default: 3.5.9
-          command: pip install -U pip
+          python-version: 3.5.9
       - name: Install python dependencies
         run: |
           sed -i 's/\/code\///g' packages-invenio.txt
