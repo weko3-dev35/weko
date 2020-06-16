@@ -84,6 +84,8 @@ jobs:
           python -m pip install -r requirements-weko-modules.txt
           python -m pip install pytest==5.4.3 pytest-cov pytest-invenio mock coveralls
       - name: Run tests
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
         run: |
           python -m pytest -v modules/${{ matrix.module }} || coveralls; false
           coveralls
